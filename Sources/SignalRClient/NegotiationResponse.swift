@@ -71,10 +71,10 @@ internal class NegotiationPayloadParser {
 
     private static func parseNegotiation(_ negotiationResponseJSON: [String: Any]) throws -> NegotiationResponse {
         let version = try parseIntNumberProperty(negotiationResponseJSON: negotiationResponseJSON, propertyName: "negotiateVersion") ?? 0
-        let connectionId = try parseStringProperty(negotiationResponseJSON: negotiationResponseJSON, propertyName: "connectionId")
+        let connectionId = try parseStringProperty(negotiationResponseJSON: negotiationResponseJSON, propertyName: "ConnectionId")
         var connectionToken: String? = nil
         if version > 0 {
-            connectionToken = try parseStringProperty(negotiationResponseJSON: negotiationResponseJSON, propertyName: "connectionToken")
+            connectionToken = try parseStringProperty(negotiationResponseJSON: negotiationResponseJSON, propertyName: "ConnectionToken")
         }
 
         let availableTransports = try parseAvailableTransports(negotiationResponseJSON: negotiationResponseJSON)
