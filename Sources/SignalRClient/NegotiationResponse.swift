@@ -98,12 +98,19 @@ internal class NegotiationPayloadParser {
         return propertyValue
     }
 
-    private static func parseAvailableTransports(negotiationResponseJSON: [String: Any]) throws -> [TransportDescription] {
-        guard let transports = negotiationResponseJSON["availableTransports"] as? [[String: Any]] else {
+    // private static func parseAvailableTransports(negotiationResponseJSON: [String: Any]) throws -> [TransportDescription] {
+    //     guard let transports = negotiationResponseJSON["availableTransports"] as? [[String: Any]] else {
+    //         throw SignalRError.invalidNegotiationResponse(message: "availableTransports property not found or invalid")
+    //     }
+
+    //     return try transports.map { try parseTransport(transportJSON: $0) }
+    // }
+     private static func parseAvailableTransports(negotiationResponseJSON: [String: Any]) throws -> [TransportDescription] {
+        guard let transports = negotiationResponseJSON["TryWebSockets"] as? [[String: Any]] else {
             throw SignalRError.invalidNegotiationResponse(message: "availableTransports property not found or invalid")
         }
 
-        return try transports.map { try parseTransport(transportJSON: $0) }
+        return [.webSockets ]
     }
 
     private static func parseTransport(transportJSON: [String: Any]) throws -> TransportDescription {
