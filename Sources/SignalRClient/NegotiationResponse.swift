@@ -110,7 +110,7 @@ internal class NegotiationPayloadParser {
             throw SignalRError.invalidNegotiationResponse(message: "availableTransports property not found or invalid - This shouldn't happen")
         }
 
-        return [.webSockets ]
+        return [TransportDescription(transportType: .webSockets, transferFormats: [.text]) ]
     }
 
     private static func parseTransport(transportJSON: [String: Any]) throws -> TransportDescription {
