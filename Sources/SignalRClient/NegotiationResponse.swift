@@ -107,7 +107,7 @@ internal class NegotiationPayloadParser {
     // }
      private static func parseAvailableTransports(negotiationResponseJSON: [String: Any]) throws -> [TransportDescription] {
         guard let transports = negotiationResponseJSON["TryWebSockets"] as? Bool else {
-            throw SignalRError.invalidNegotiationResponse(message: "availableTransports property not found or invalid")
+            throw SignalRError.invalidNegotiationResponse(message: "availableTransports property not found or invalid - This shouldn't happen")
         }
 
         return [.webSockets ]
